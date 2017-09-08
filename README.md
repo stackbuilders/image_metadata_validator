@@ -1,8 +1,6 @@
 # ImageMetadataValidator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/image_metadata_validator`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to `image_metadata_validator`!. The purpose of this gem is to allow you to validate easily the `width` and `height` of an image uploaded with Carrierewave.
 
 ## Installation
 
@@ -21,8 +19,14 @@ Or install it yourself as:
     $ gem install image_metadata_validator
 
 ## Usage
+For instance if you have a carrierewave uploader called `BackgroundImageUploader`, you can validate it's with and height in the following way:
 
-TODO: Write usage instructions here
+```ruby
+mount_uploader :background_image, BackgroundImageUploader
+
+validate :background_image, image_width: { greater_than: 500 }
+validate :background_image, image_height: { less_than_or_equal_to: 400 }
+```
 
 ## Development
 
@@ -32,7 +36,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/image_metadata_validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/stackbuilders/image_metadata_validator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
