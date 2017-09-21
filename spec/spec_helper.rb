@@ -1,5 +1,26 @@
-require "bundler/setup"
-require "image_metadata_validator"
+# $LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
+# $LOAD_PATH.unshift(File.dirname(__FILE__) + '/resources')
+
+require 'rspec'
+require 'sqlite3'
+require 'active_record'
+require 'active_record/base'
+require 'active_record/migration'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+require 'mini_magick'
+
+require_relative '../lib/image_metadata_validator'
+require_relative '../spec/resources/user'
+
+ActiveRecord::Migration.verbose = false
+ActiveRecord::Base.establish_connection(
+  "adapter"   => "sqlite3",
+  "database"  => ":memory:"
+)
+
+# require "bundler/setup"
+# require "image_metadata_validator"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
