@@ -21,7 +21,7 @@ module ActiveModel
       end
 
       def validate_each(record, attribute, value)
-        image = MiniMagick::Image.open(attribute.file.path)
+        image = MiniMagick::Image.open(value.file.path)
         width, height = image.dimensions
         raise Exception "No es" unless width == height
       end

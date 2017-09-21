@@ -13,7 +13,8 @@ RSpec.describe ImageMetadataValidator do
     let(:user) { User.new }
 
     it "should not allow nil as url" do
-      user.avatar = File.join(File.dirname(__FILE__), '../resources/avatar_woman.jpeg')
+      file_name = File.join(File.dirname(__FILE__), 'resources/avatar_woman.jpeg')
+      user.avatar = File.open(file_name)
       expect(user).not_to be_valid
     end
   end
