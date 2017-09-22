@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  validates :avatar, image_metadata: { equal_to: 5 }
+  validates :avatar, image_metadata: { equal_to: 225 }
 end

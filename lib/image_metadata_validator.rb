@@ -21,12 +21,36 @@ module ActiveModel
       end
 
       def validate_each(record, attribute, value)
-        image = MiniMagick::Image.open(value.file.path)
-        width, height = image.dimensions
-        raise Exception "No es" unless width == height
+        d = dimensions(value)
+        p 'record'
+        p record
+        p 'attribute'
+        p attribute
+        p 'value'
+        p value
+        p 'options'
+        p options
+        p 'dimensions'
+        p d
+        validation = d[:width].send(CHECKS[options.first.first], options.first.last)
+        p 'validation'
+        p d[:width]
+        record.errors.add(attribute, :metadata) unless validation
+
+      end
+
+      private
+
+      def dimensions(value)
+        p = MiniMagick::Image.open(value.file.path).dimensions
+        p p
+        Hash[
+          [:width, :height].zip(
+            p
+          )
+        ]
       end
     end
-
 
     module HelperMethods
       # TODO: Improve comments
