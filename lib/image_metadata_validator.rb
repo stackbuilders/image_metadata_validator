@@ -21,32 +21,21 @@ module ActiveModel
       end
 
       def validate_each(record, attribute, value)
-        d = dimensions(value)
-        p 'record'
-        p record
-        p 'attribute'
-        p attribute
-        p 'value'
-        p value
-        p 'options'
-        p options
-        p 'dimensions'
-        p d
-        validation = d[:width].send(CHECKS[options.first.first], options.first.last)
-        p 'validation'
-        p d[:width]
-        record.errors.add(attribute, :metadata) unless validation
+        dimensions = image_dimensions(value)
 
+        options.each do |key, value|
+          unless dimensions[:width].send(CHECKS[key], value)
+            record.errors.add(attribute, :metadata)
+          end
+        end
       end
 
       private
 
-      def dimensions(value)
-        p = MiniMagick::Image.open(value.file.path).dimensions
-        p p
+      def image_dimensions(value)
         Hash[
           [:width, :height].zip(
-            p
+            MiniMagick::Image.open(value.file.path).dimensions
           )
         ]
       end
