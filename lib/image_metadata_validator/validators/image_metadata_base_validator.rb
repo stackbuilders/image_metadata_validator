@@ -20,11 +20,13 @@ module ActiveModel
       end
 
       def validate_each(record, attribute, value)
-        dimensions = image_dimensions(value)
+        if value.file.present?
+          dimensions = image_dimensions(value)
 
-        options.each do |k, v|
-          unless dimensions[:width].send(CHECKS[k], v)
-            record.errors.add(attribute, :metadata)
+          options.each do |k, v|
+            unless dimensions[:width].send(CHECKS[k], v)
+              record.errors.add(attribute, :metadata)
+            end
           end
         end
       end

@@ -11,3 +11,5 @@
 # rspec failure tracking
 .rspec_status
 /uploads/**/*
+/spec/.DS_Store
+/spec/resources/.DS_Store
