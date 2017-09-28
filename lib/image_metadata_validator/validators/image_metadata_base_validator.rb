@@ -12,7 +12,7 @@ module ActiveModel
       }.freeze
 
       def check_validity!
-        options.slice(CHECKS.keys).each do |option, value|
+        options.slice(*CHECKS.keys).each do |option, value|
           unless value.is_a?(Numeric) || value.is_a?(Proc) || value.is_a?(Symbol)
             raise ArgumentError, ":#{option} must be a number, a symbol or a proc"
           end

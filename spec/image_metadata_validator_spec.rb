@@ -1,21 +1,41 @@
 require 'spec_helper'
+require_relative 'resources/avatar_uploader'
 
 RSpec.describe ImageMetadataValidator do
+  let(:validation) { nil }
+  let(:attributes) { {} }
+  let(:cls) do
+    local_validation = validation
+    User.tap do |c|
+      c.clear_validators!
+      c.validates :avatar, **local_validation if local_validation
+    end
+  end
+
   before do
     ActiveRecord::Schema.define(version: 1) do
       create_table :users, force: true do |t|
         t.column :avatar, :string
-        t.column :avatar_greater, :string
-        t.column :avatar_greater_or_equal, :string
-        t.column :avatar_equal, :string
-        t.column :avatar_less, :string
-        t.column :avatar_less_or_equal, :string
       end
     end
   end
 
   it 'has a version number' do
     expect(ImageMetadataValidator::VERSION).not_to be_nil
+  end
+
+  context 'initialization' do
+    subject { -> { cls.new(attributes) } }
+    
+    context 'when sending wrong parameter types' do
+      let(:validation) { { image_width: { greater_than: 'hello' } } }
+      it { is_expected.to raise_error ArgumentError }
+    end
+
+    context 'when sending the expected parameter types' do
+      let(:validation) { { image_width: { greater_than: 30 } } }
+      it { is_expected.not_to raise_error }
+    end
   end
 
   context 'width validation' do
