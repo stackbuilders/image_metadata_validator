@@ -12,7 +12,9 @@ module ActiveModel
       }.freeze
 
       def check_validity!
-        options.slice(CHECKS.keys).each do |option, value|
+        raise ArgumentError, 'Invalid option' unless (options.keys - CHECKS.keys).empty?
+
+        options.slice(*CHECKS.keys).each do |option, value|
           unless value.is_a?(Numeric) || value.is_a?(Proc) || value.is_a?(Symbol)
             raise ArgumentError, ":#{option} must be a number, a symbol or a proc"
           end
@@ -21,10 +23,10 @@ module ActiveModel
 
       def validate_each(record, attribute, value)
         if value.file.present?
-          dimensions = image_dimensions(value)
+          dimension = dimension_to_validate(value)
 
           options.each do |k, v|
-            unless dimensions[:width].send(CHECKS[k], v)
+            unless dimension.send(CHECKS[k], v)
               record.errors.add(attribute, :metadata)
             end
           end
@@ -33,12 +35,15 @@ module ActiveModel
 
       private
 
+      def dimension_to_validate(value)
+        raise NotImplementedError,
+          'This is an abstract validator. Use width or height validators instead.'
+      end
+
       def image_dimensions(value)
-        Hash[
-          [:width, :height].zip(
-            MiniMagick::Image.open(value.file.path).dimensions
-          )
-        ]
+        [:width, :height]
+          .zip(MiniMagick::Image.open(value.file.path).dimensions)
+          .to_h
       end
     end
   end

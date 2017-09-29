@@ -4,6 +4,11 @@ require_relative 'image_metadata_base_validator'
 module ActiveModel
   module Validations
     class ImageWidthValidator < ImageMetadataBaseValidator
+      private
+
+      def dimension_to_validate(value)
+        image_dimensions(value)[:width]
+      end
     end
 
     module HelperMethods
