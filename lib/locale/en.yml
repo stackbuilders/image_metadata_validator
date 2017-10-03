@@ -1,0 +1,4 @@
+en:
+  errors:
+    messages:
+      width: has an invalid width

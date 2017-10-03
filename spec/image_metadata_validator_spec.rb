@@ -150,6 +150,18 @@ RSpec.describe ImageMetadataValidator do
         it { is_expected.not_to be_valid }
       end
     end
+
+    context 'when validation fails' do
+      let(:validation) { { image_width: { greater_than: 200 } } }
+      let(:attributes) { { avatar: image_with_size(100) } }
+      before { subject.valid? }
+
+      it 'sets the correct error message' do
+        expect(subject.errors.count).to eq 1
+        expect(subject.errors.messages[:avatar])
+          .to eq ['has an invalid width']
+      end
+    end
   end
 
   describe 'combining options' do

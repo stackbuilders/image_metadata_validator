@@ -6,8 +6,8 @@ module ActiveModel
     class ImageWidthValidator < ImageMetadataBaseValidator
       private
 
-      def dimension_to_validate(value)
-        image_dimensions(value)[:width]
+      def dimension_key
+        :width
       end
     end
 
