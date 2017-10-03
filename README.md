@@ -1,6 +1,6 @@
 # ImageMetadataValidator
 
-Welcome to `image_metadata_validator`!. The purpose of this gem is to allow you to validate easily the `width` and `height` of an image uploaded with Carrierewave.
+Welcome to `image_metadata_validator`!. The purpose of this gem is to allow you to easily validate the `width` and `height` of an image uploaded with Carrierwave.
 
 ## Installation
 
@@ -19,7 +19,7 @@ Or install it yourself as:
     $ gem install image_metadata_validator
 
 ## Usage
-For instance if you have a carrierewave uploader called `BackgroundImageUploader`, you can validate it's with and height in the following way:
+For instance if you have a Carrierwave uploader called `BackgroundImageUploader`, you can validate it's with and height in the following way:
 
 ```ruby
 mount_uploader :background_image, BackgroundImageUploader
