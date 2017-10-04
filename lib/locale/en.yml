@@ -1,4 +1,4 @@
 en:
   errors:
     messages:
-      width: has an invalid width
+      image_metadata_width: has an invalid width

@@ -27,7 +27,7 @@ module ActiveModel
 
           options.each do |k, v|
             unless dimension.send(CHECKS[k], v)
-              record.errors.add(attribute, dimension_key)
+              record.errors.add(attribute, error_key)
             end
           end
         end
@@ -42,6 +42,10 @@ module ActiveModel
       def dimension_key
         raise NotImplementedError,
           'This is an abstract validator. Use width or height validators instead.'
+      end
+
+      def error_key
+        :"image_metadata_#{dimension_key}"
       end
 
       def image_dimensions(value)
