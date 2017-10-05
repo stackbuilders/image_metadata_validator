@@ -2,3 +2,4 @@ en:
   errors:
     messages:
       image_metadata_width: has an invalid width
+      image_metadata_height: has an invalid height
