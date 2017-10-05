@@ -11,7 +11,8 @@ require 'carrierwave/orm/activerecord'
 require 'mini_magick'
 
 require_relative '../lib/image_metadata_validator'
-require_relative '../spec/resources/user'
+require_relative 'resources/user'
+require_relative 'fixtures'
 
 ActiveRecord::Migration.verbose = false
 ActiveRecord::Base.establish_connection(
@@ -25,6 +26,7 @@ RSpec.configure do |config|
 
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
+  config.include SpecHelpers::Fixtures
 
   config.expect_with :rspec do |c|
     c.syntax = :expect

@@ -156,10 +156,4 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
       it { is_expected.not_to be_valid }
     end
   end
-
-  private
-
-  def image_with_size(size)
-    File.open(File.expand_path("spec/resources/images/avatar_#{size}.jpeg"))
-  end
 end
