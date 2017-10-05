@@ -26,23 +26,23 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
     end
   end
 
-  context 'width validator' do
+  context "#{dimension} validator" do
     subject { -> { cls.new(attributes) }.call }
 
     describe 'greater_than option' do
       let(:validation) { { validator => { greater_than: 200 } } }
 
-      context 'when width is greater than the validation option' do
+      context "when #{dimension} is greater than the validation option" do
         let (:attributes) { { avatar: image_with_size(300) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is equal to the validation option' do
+      context "when #{dimension} is equal to the validation option" do
         let (:attributes) { { avatar: image_with_size(200) } }
         it { is_expected.not_to be_valid }
       end
 
-      context 'when width is less than the validation option' do
+      context "when #{dimension} is less than the validation option" do
         let (:attributes) { { avatar: image_with_size(100) } }
         it { is_expected.not_to be_valid }
       end
@@ -51,17 +51,17 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
     describe 'greater_than_or_equal_to option' do
       let(:validation) { { validator => { greater_than_or_equal_to: 200 } } }
 
-      context 'when width is greater than the validation option' do
+      context "when #{dimension} is greater than the validation option" do
         let (:attributes) { { avatar: image_with_size(300) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is equal to the validation option' do
+      context "when #{dimension} is equal to the validation option" do
         let (:attributes) { { avatar: image_with_size(200) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is less than the validation option' do
+      context "when #{dimension} is less than the validation option" do
         let (:attributes) { { avatar: image_with_size(100) } }
         it { is_expected.not_to be_valid }
       end
@@ -70,17 +70,17 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
     describe 'equal_to option' do
       let(:validation) { { validator => { equal_to: 200 } } }
 
-      context 'when width equals the validation option' do
+      context "when #{dimension} equals the validation option" do
         let (:attributes) { { avatar: image_with_size(200) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is less than the validation option' do
+      context "when #{dimension} is less than the validation option" do
         let (:attributes) { { avatar: image_with_size(100) } }
         it { is_expected.not_to be_valid }
       end
 
-      context 'when width is greater than the validation option' do
+      context "when #{dimension} is greater than the validation option" do
         let (:attributes) { { avatar: image_with_size(300) } }
         it { is_expected.not_to be_valid }
       end
@@ -89,17 +89,17 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
     describe 'less_than option' do
       let(:validation) { { validator => { less_than: 200 } } }
 
-      context 'when width is less than the validation option' do
+      context "when #{dimension} is less than the validation option" do
         let (:attributes) { { avatar: image_with_size(100) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is equal to the validation option' do
+      context "when #{dimension} is equal to the validation option" do
         let (:attributes) { { avatar: image_with_size(200) } }
         it { is_expected.not_to be_valid }
       end
 
-      context 'when width is greater than the validation option' do
+      context "when #{dimension} is greater than the validation option" do
         let (:attributes) { { avatar: image_with_size(300) } }
         it { is_expected.not_to be_valid }
       end
@@ -108,17 +108,17 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
     describe 'less_than_or_equal_to option' do
       let(:validation) { { validator => { less_than_or_equal_to: 200 } } }
 
-      context 'when width is less than the validation option' do
+      context "when #{dimension} is less than the validation option" do
         let (:attributes) { { avatar: image_with_size(100) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is equal to the validation option' do
+      context "when #{dimension} is equal to the validation option" do
         let (:attributes) { { avatar: image_with_size(200) } }
         it { is_expected.to be_valid }
       end
 
-      context 'when width is greater than the validation option' do
+      context "when #{dimension} is greater than the validation option" do
         let (:attributes) { { avatar: image_with_size(300) } }
         it { is_expected.not_to be_valid }
       end
@@ -141,17 +141,17 @@ RSpec.shared_examples 'child of metadata base validator' do |dimension|
     subject { -> { cls.new(attributes) }.call }
     let(:validation) { { validator => { greater_than: 150, less_than: 250 } } }
 
-    context 'when width is between expected values' do
+    context "when #{dimension} is between expected values" do
       let (:attributes) { { avatar: image_with_size(200) } }
       it { is_expected.to be_valid }
     end
 
-    context 'when width is less than the validation option' do
+    context "when #{dimension} is less than the validation option" do
       let (:attributes) { { avatar: image_with_size(100) } }
       it { is_expected.not_to be_valid }
     end
 
-    context 'when width is greater than the validation option' do
+    context "when #{dimension} is greater than the validation option" do
       let (:attributes) { { avatar: image_with_size(300) } }
       it { is_expected.not_to be_valid }
     end
