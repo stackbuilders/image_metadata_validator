@@ -1,13 +1,14 @@
 require 'active_model'
-require_relative 'image_metadata_base_validator'
+require_relative 'image_numerical_metadata'
 
 module ActiveModel
   module Validations
-    class ImageHeightValidator < ImageMetadataBaseValidator
-      private
+    class ImageHeightValidator < EachValidator
+      include ImageNumericalMetadata
+      DIMENSION = :height
 
-      def dimension_key
-        :height
+      def validate_each(record, attribute, value)
+        validate_dimension(record, attribute, value, DIMENSION)
       end
     end
 
