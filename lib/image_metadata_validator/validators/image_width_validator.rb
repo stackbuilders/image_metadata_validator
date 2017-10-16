@@ -1,14 +1,15 @@
 require 'active_model'
-require_relative 'image_numerical_metadata'
+require_relative 'numerical_metadata_checks'
+require_relative 'image_numerical_metadata_validator'
 
 module ActiveModel
   module Validations
     class ImageWidthValidator < EachValidator
-      include ImageNumericalMetadata
-      DIMENSION = :width
+      include NumericalMetadataChecks
 
       def validate_each(record, attribute, value)
-        validate_dimension(record, attribute, value, DIMENSION)
+        validator = ImageNumericalMetadataValidator.create_width_validator(CHECKS, options)
+        validator.validate_dimension(record, attribute, value)
       end
     end
 
