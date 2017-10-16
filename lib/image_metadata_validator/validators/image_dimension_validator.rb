@@ -1,7 +1,6 @@
 module ActiveModel
   module Validations
-    class ImageNumericalMetadataValidator
-
+    class ImageDimensionValidator
       def self.create_width_validator(checks, options)
         new(:width, checks, options)
       end

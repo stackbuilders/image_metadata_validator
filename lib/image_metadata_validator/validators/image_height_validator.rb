@@ -1,6 +1,6 @@
 require 'active_model'
 require_relative 'numerical_metadata_checks'
-require_relative 'image_numerical_metadata_validator'
+require_relative 'image_dimension_validator'
 
 module ActiveModel
   module Validations
@@ -8,7 +8,7 @@ module ActiveModel
       include NumericalMetadataChecks
 
       def validate_each(record, attribute, value)
-        validator = ImageNumericalMetadataValidator.create_height_validator(CHECKS, options)
+        validator = ImageDimensionValidator.create_height_validator(CHECKS, options)
         validator.validate_dimension(record, attribute, value)
       end
     end
