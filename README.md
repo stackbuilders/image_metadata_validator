@@ -1,5 +1,7 @@
 # ImageMetadataValidator
 
+[![Build Status](https://travis-ci.org/stackbuilders/image_metadata_validator.svg?branch=master)](https://travis-ci.org/stackbuilders/image_metadata_validator)
+
 Welcome to `image_metadata_validator`!. The purpose of this gem is to allow you to easily validate the `width` and `height` of an image uploaded with Carrierwave.
 
 ## Installation
