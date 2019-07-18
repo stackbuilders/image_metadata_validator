@@ -1,4 +1,4 @@
-# ImageMetadataValidator
+# [DEPRECATED] ImageMetadataValidator
 
 [![Build Status](https://travis-ci.org/stackbuilders/image_metadata_validator.svg?branch=master)](https://travis-ci.org/stackbuilders/image_metadata_validator)
 
